@@ -102,5 +102,11 @@ app.delete('/todos/:id', (req, res) => {
   res.status(204).send();
 });
 
-const PORT = 3000;
-app.listen(PORT, () => console.log(`Running on http://localhost:${PORT}`));
+// at the bottom of your app file (e.g. app.js), replace the listen block:
+const PORT = process.env.PORT || 3000;
+
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Running on http://localhost:${PORT}`));
+}
+
+module.exports = app;

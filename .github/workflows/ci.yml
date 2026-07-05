@@ -1,13 +1,10 @@
 name: CI
-
 on:
   push:
   pull_request:
-
 jobs:
   lint-test-build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -22,6 +19,12 @@ jobs:
 
       - name: Run lint
         run: npm run lint
+
+      - name: Start server
+        run: npm start &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000/todos
 
       - name: Run tests
         run: npm test
