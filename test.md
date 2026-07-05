@@ -21,3 +21,30 @@ Invoke-RestMethod -Uri "http://localhost:3000/todos/1" -Method Put `
 
 # Delete
 Invoke-RestMethod -Uri "http://localhost:3000/todos/1" -Method Delete
+
+
+# mac
+
+# Add a todo
+curl -X POST "http://localhost:3000/todos" \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Buy groceries","status":"backlog","due_date":"2026-07-15"}'
+
+# List all
+curl "http://localhost:3000/todos"
+
+# List only in-progress
+curl "http://localhost:3000/todos?status=in_progress"
+
+# Change status (backlog -> in_progress -> completed)
+curl -X PATCH "http://localhost:3000/todos/1/status" \
+  -H "Content-Type: application/json" \
+  -d '{"status":"completed"}'
+
+# Update title
+curl -X PUT "http://localhost:3000/todos/1" \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Buy groceries and milk"}'
+
+# Delete
+curl -X DELETE "http://localhost:3000/todos/1"
