@@ -21,7 +21,3 @@ Created Dockerfile to contain the application and run application.
 ```
 docker run -p 3000:3000 --name todo-app-container todo-app
 ```
-
-# 4 Continuous Integration
-
-Created github workflow that runs jest upon update.
