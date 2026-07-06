@@ -25,3 +25,5 @@ docker run -p 3000:3000 --name todo-app-container todo-app
 # 4 Continuous Integration
 
 Added tests that are triggered on push to github.
+
+Added build docker image as part of test.
