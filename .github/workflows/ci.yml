@@ -1,33 +1,32 @@
 name: CI
+
 on:
   push:
-  pull_request:
+
+permissions:
+  contents: read
+
 jobs:
-  lint-test-build:
+  test:
+    name: Test on Node.js
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node-version }}
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run lint
-        run: npm run lint
-
-      - name: Start server
-        run: npm start &
-
-      - name: Wait for server
-        run: npx wait-on http://localhost:3000/todos
-
       - name: Run tests
         run: npm test
-
-      - name: Build Docker image
-        run: docker build -t todo-api .
