@@ -22,6 +22,6 @@ Created Dockerfile to contain the application and run application.
 docker run -p 3000:3000 --name todo-app-container todo-app
 ```
 
-# 3 Continuous Integration
+# 4 Continuous Integration
 
 Added tests that are triggered on push to github.
